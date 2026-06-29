@@ -1,1 +1,25 @@
-body{background:#f4f6f9}.navbar-brand{font-weight:bold}.card{border-radius:12px}.footer{padding:30px;text-align:center}
+body{
+    background:#f4f7fb;
+}
+
+.card{
+    border:none;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.table{
+    background:white;
+}
+
+.navbar-brand{
+    font-weight:bold;
+}
+
+.btn{
+    border-radius:8px;
+}
+
+h1,h2{
+    font-weight:700;
+}
