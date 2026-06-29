@@ -1,1 +1,35 @@
-{% extends 'base.html' %}{% block content %}<h1>Welcome</h1><a href='/dashboard'>Dashboard</a>{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center py-5">
+
+<h1 class="display-4">
+Professional Logistics Management System
+</h1>
+
+<p class="lead">
+
+Manage shipments,
+track deliveries,
+and monitor logistics operations.
+
+</p>
+
+<a href="/shipment/create"
+class="btn btn-primary btn-lg">
+
+Create Shipment
+
+</a>
+
+<a href="/shipments"
+class="btn btn-outline-primary btn-lg">
+
+View Shipments
+
+</a>
+
+</div>
+
+{% endblock %}
