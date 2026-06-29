@@ -97,4 +97,14 @@ Create Shipment
 
 </form>
 
-{% endblock %}
+{% endblock %} 
+
+@main.route("/shipment/<int:id>")
+def shipment_details(id):
+
+    shipment = Shipment.query.get_or_404(id)
+
+    return render_template(
+        "shipment_details.html",
+        shipment=shipment
+    )
