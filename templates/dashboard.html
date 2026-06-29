@@ -1,1 +1,75 @@
-{% extends 'base.html' %}{% block content %}<h2>Dashboard</h2>{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card text-center">
+
+<div class="card-body">
+
+<h3>{{ total }}</h3>
+
+<p>Total Shipments</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center">
+
+<div class="card-body">
+
+<h3>{{ pending }}</h3>
+
+<p>Pending</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center">
+
+<div class="card-body">
+
+<h3>{{ transit }}</h3>
+
+<p>In Transit</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card text-center">
+
+<div class="card-body">
+
+<h3>{{ delivered }}</h3>
+
+<p>Delivered</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
