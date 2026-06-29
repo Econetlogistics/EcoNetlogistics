@@ -2,29 +2,45 @@
 
 {% block content %}
 
-<h2 class="mb-4">
-All Shipments
-</h2>
+<h2 class="mb-4">Shipment Management</h2>
 
-<table class="table table-bordered table-hover">
+<form method="GET"
+action="/shipment/search"
+class="mb-3">
 
-<thead class="table-primary">
+<div class="input-group">
+
+<input
+type="text"
+name="keyword"
+class="form-control"
+placeholder="Search Tracking Number">
+
+<button class="btn btn-primary">
+
+Search
+
+</button>
+
+</div>
+
+</form>
+
+<table class="table table-hover table-bordered">
+
+<thead class="table-dark">
 
 <tr>
 
-<th>Tracking No.</th>
+<th>Tracking</th>
 
 <th>Sender</th>
 
 <th>Receiver</th>
 
-<th>Origin</th>
-
-<th>Destination</th>
-
 <th>Status</th>
 
-<th>Weight</th>
+<th>Actions</th>
 
 </tr>
 
@@ -42,21 +58,66 @@ All Shipments
 
 <td>{{ shipment.receiver_name }}</td>
 
-<td>{{ shipment.origin }}</td>
-
-<td>{{ shipment.destination }}</td>
-
 <td>
 
+{% if shipment.current_status=="Pending" %}
+
 <span class="badge bg-warning">
+Pending
+</span>
+
+{% elif shipment.current_status=="In Transit" %}
+
+<span class="badge bg-primary">
+In Transit
+</span>
+
+{% elif shipment.current_status=="Delivered" %}
+
+<span class="badge bg-success">
+Delivered
+</span>
+
+{% else %}
+
+<span class="badge bg-secondary">
 
 {{ shipment.current_status }}
 
 </span>
 
+{% endif %}
+
 </td>
 
-<td>{{ shipment.weight }} kg</td>
+<td>
+
+<a
+href="/shipment/{{ shipment.id }}"
+class="btn btn-info btn-sm">
+
+View
+
+</a>
+
+<a
+href="/shipment/edit/{{ shipment.id }}"
+class="btn btn-warning btn-sm">
+
+Edit
+
+</a>
+
+<a
+href="/shipment/delete/{{ shipment.id }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete shipment?')">
+
+Delete
+
+</a>
+
+</td>
 
 </tr>
 
