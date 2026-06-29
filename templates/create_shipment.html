@@ -108,3 +108,58 @@ def shipment_details(id):
         "shipment_details.html",
         shipment=shipment
     )
+@main.route("/shipment/edit/<int:id>", methods=["GET", "POST"])
+def edit_shipment(id):
+
+    shipment = Shipment.query.get_or_404(id)
+
+    if request.method == "POST":
+
+        shipment.sender_name = request.form["sender_name"]
+        shipment.receiver_name = request.form["receiver_name"]
+        shipment.origin = request.form["origin"]
+        shipment.destination = request.form["destination"]
+        shipment.weight = float(request.form["weight"])
+        shipment.shipment_type = request.form["shipment_type"]
+        shipment.current_status = request.form["current_status"]
+
+        db.session.commit()
+
+        flash("Shipment updated successfully!", "success")
+
+        return redirect(url_for("main.shipments"))
+
+    return render_template(
+        "edit_shipment.html",
+        shipment=shipment
+    )
+
+    @main.route("/shipment/delete/<int:id>")
+def delete_shipment(id):
+
+    shipment = Shipment.query.get_or_404(id)
+
+    db.session.delete(shipment)
+
+    db.session.commit()
+
+    flash("Shipment deleted.", "danger")
+
+    return redirect(url_for("main.shipments"))
+
+        @main.route("/shipment/search")
+def search_shipments():
+
+    keyword = request.args.get("keyword", "")
+
+    shipments = Shipment.query.filter(
+
+        Shipment.tracking_number.contains(keyword)
+
+    ).all()
+
+    return render_template(
+        "shipments.html",
+        shipments=shipments
+    )
+ 
