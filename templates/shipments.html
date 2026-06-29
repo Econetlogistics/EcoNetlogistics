@@ -1,1 +1,69 @@
-{% extends 'base.html' %}{% block content %}<h2>Shipments</h2>{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+All Shipments
+</h2>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-primary">
+
+<tr>
+
+<th>Tracking No.</th>
+
+<th>Sender</th>
+
+<th>Receiver</th>
+
+<th>Origin</th>
+
+<th>Destination</th>
+
+<th>Status</th>
+
+<th>Weight</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for shipment in shipments %}
+
+<tr>
+
+<td>{{ shipment.tracking_number }}</td>
+
+<td>{{ shipment.sender_name }}</td>
+
+<td>{{ shipment.receiver_name }}</td>
+
+<td>{{ shipment.origin }}</td>
+
+<td>{{ shipment.destination }}</td>
+
+<td>
+
+<span class="badge bg-warning">
+
+{{ shipment.current_status }}
+
+</span>
+
+</td>
+
+<td>{{ shipment.weight }} kg</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
