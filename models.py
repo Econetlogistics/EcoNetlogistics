@@ -210,3 +210,11 @@ class Notification(db.Model):
         db.DateTime,
         default=datetime.utcnow
     )
+current_location = db.Column(db.String(120), default="Warehouse")
+
+estimated_delivery = db.Column(db.Date)
+
+last_updated = db.Column(
+    db.DateTime,
+    default=datetime.utcnow
+)
