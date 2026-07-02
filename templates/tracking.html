@@ -1,1 +1,183 @@
-{% extends 'base.html' %}{% block content %}<h2>Tracking</h2>{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-8">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h2 class="text-center mb-4">
+
+Track Shipment
+
+</h2>
+
+<form method="POST">
+
+<div class="input-group mb-4">
+
+<input
+type="text"
+name="tracking_number"
+class="form-control"
+placeholder="Enter Tracking Number"
+required>
+
+<button
+class="btn btn-primary">
+
+Track
+
+</button>
+
+</div>
+
+</form>
+
+{% if error %}
+
+<div class="alert alert-danger">
+
+{{ error }}
+
+</div>
+
+{% endif %}
+
+{% if shipment %}
+
+<hr>
+
+<h4>
+
+Tracking Result
+
+</h4>
+
+<table class="table">
+
+<tr>
+
+<th>Tracking Number</th>
+
+<td>{{ shipment.tracking_number }}</td>
+
+</tr>
+
+<tr>
+
+<th>Sender</th>
+
+<td>{{ shipment.sender_name }}</td>
+
+</tr>
+
+<tr>
+
+<th>Receiver</th>
+
+<td>{{ shipment.receiver_name }}</td>
+
+</tr>
+
+<tr>
+
+<th>Origin</th>
+
+<td>{{ shipment.origin }}</td>
+
+</tr>
+
+<tr>
+
+<th>Destination</th>
+
+<td>{{ shipment.destination }}</td>
+
+</tr>
+
+<tr>
+
+<th>Status</th>
+
+<td>
+
+{% if shipment.current_status=="Pending" %}
+
+<span class="badge bg-warning">
+
+Pending
+
+</span>
+
+{% elif shipment.current_status=="In Transit" %}
+
+<span class="badge bg-primary">
+
+In Transit
+
+</span>
+
+{% elif shipment.current_status=="Delivered" %}
+
+<span class="badge bg-success">
+
+Delivered
+
+</span>
+
+{% else %}
+
+<span class="badge bg-secondary">
+
+{{ shipment.current_status }}
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Weight</th>
+
+<td>
+
+{{ shipment.weight }} kg
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Shipment Type</th>
+
+<td>
+
+{{ shipment.shipment_type }}
+
+</td>
+
+</tr>
+
+</table>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
