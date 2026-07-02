@@ -48,7 +48,159 @@ Track
 
 {% endif %}
 
-{% if shipment %}
+<hr>
+
+<h3 class="mb-4">
+
+Tracking Information
+
+</h3>
+
+<div class="alert alert-primary">
+
+<strong>Status:</strong>
+
+{{ shipment.current_status }}
+
+</div>
+
+<div class="progress mb-4" style="height:25px;">
+
+{% if shipment.current_status=="Pending" %}
+
+<div
+class="progress-bar bg-warning"
+style="width:25%;">
+
+Pending
+
+</div>
+
+{% elif shipment.current_status=="In Transit" %}
+
+<div
+class="progress-bar bg-info"
+style="width:65%;">
+
+In Transit
+
+</div>
+
+{% elif shipment.current_status=="Delivered" %}
+
+<div
+class="progress-bar bg-success"
+style="width:100%;">
+
+Delivered
+
+</div>
+
+{% endif %}
+
+</div>
+
+<table class="table table-bordered">
+
+<tr>
+<th>Tracking Number</th>
+<td>{{ shipment.tracking_number }}</td>
+</tr>
+
+<tr>
+<th>Current Location</th>
+<td>{{ shipment.current_location }}</td>
+</tr>
+
+<tr>
+<th>Origin</th>
+<td>{{ shipment.origin }}</td>
+</tr>
+
+<tr>
+<th>Destination</th>
+<td>{{ shipment.destination }}</td>
+</tr>
+
+<tr>
+<th>Estimated Delivery</th>
+<td>{{ shipment.estimated_delivery }}</td>
+</tr>
+
+<tr>
+<th>Shipment Type</th>
+<td>{{ shipment.shipment_type }}</td>
+</tr>
+
+</table>
+
+<h4 class="mt-5">
+
+Shipment Timeline
+
+</h4>
+
+<ul class="list-group">
+
+<li class="list-group-item">
+
+✅ Shipment Created
+
+</li>
+
+<li class="list-group-item">
+
+📦 Package Received
+
+</li>
+
+{% if shipment.current_status=="Pending" %}
+
+<li class="list-group-item text-muted">
+
+🚚 Awaiting Dispatch
+
+</li>
+
+{% endif %}
+
+{% if shipment.current_status=="In Transit" %}
+
+<li class="list-group-item">
+
+🚚 In Transit
+
+</li>
+
+<li class="list-group-item text-muted">
+
+📍 Heading to Destination
+
+</li>
+
+{% endif %}
+
+{% if shipment.current_status=="Delivered" %}
+
+<li class="list-group-item">
+
+🚚 In Transit
+
+</li>
+
+<li class="list-group-item">
+
+📍 Arrived
+
+</li>
+
+<li class="list-group-item">
+
+✅ Delivered
+
+</li>
+
+{% endif %}
 
 <hr>
 
